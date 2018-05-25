@@ -1,0 +1,5 @@
+[{
+    "repos_url": "https://api.github.com/users/${user}/repos",
+    "starred_url": "https://api.github.com/user/starred{/owner}{/repo}",
+    "starred_gists_url": "https://api.github.com/gists/starred",
+}]

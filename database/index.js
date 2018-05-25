@@ -1,16 +1,31 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
+const Schema = mongoose.Schema;
 
-let repoSchema = mongoose.Schema({
-  // TODO: your schema here!
+var kittySchema = mongoose.Schema({
+  name: String
 });
 
-let Repo = mongoose.model('Repo', repoSchema);
+var silence = new Kitten({ name: 'Silence' });
+console.log(silence.name); 
 
-let save = (/* TODO */) => {
-  // TODO: Your code here
-  // This function should save a repo or repos to
-  // the MongoDB
-}
 
-module.exports.save = save;
+mongoose.connect('mongodb://localhost/test');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('We are Connected');
+});
+// let repoSchema = mongoose.Schema({
+//   // TODO: your schema here!
+// });
+
+// let Repo = mongoose.model('Repo', repoSchema);
+
+// let save = (/* TODO */) => {
+//   // TODO: Your code here
+//   // This function should save a repo or repos to
+//   // the MongoDB
+// }
+
+// module.exports.save = save;

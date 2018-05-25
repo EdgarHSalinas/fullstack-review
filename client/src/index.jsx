@@ -1,14 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
+// import './data.json';
 
+var data = [
+  {
+  "id": 1234,
+  "name": "test",
+  "full_name": "test/test2"
+  },
+  {
+    "id": 5678,
+    "name": "test2",
+    "full_name": "test2/test4"
+  }
+];
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      repos: []
+      repos: [
+        {
+        "id": 1234,
+        "name": "test",
+        "full_name": "test/test2"
+        },
+        {
+          "id": 5678,
+          "name": "test2",
+          "full_name": "test2/test4"
+        }
+      ]
     }
 
   }
@@ -19,11 +42,14 @@ class App extends React.Component {
   }
 
   render () {
-    return (<div>
+    console.log(this.state);
+    return (
+    <div>
       <h1>Github Fetcher</h1>
       <RepoList repos={this.state.repos}/>
       <Search onSearch={this.search.bind(this)}/>
-    </div>)
+    </div>
+    )
   }
 }
 
