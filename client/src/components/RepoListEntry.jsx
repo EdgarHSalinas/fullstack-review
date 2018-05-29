@@ -4,8 +4,8 @@ const RepoListEntry = (props) => {
   
   return (
     <div>
-      <span> {props.repo.id} </span>
-      <span> {props.repo.name} </span>
+      <span> {props.repo.username} </span>
+      <span> {props.repo.repo} </span>
     </div>
   )
 }

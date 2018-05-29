@@ -1,31 +1,30 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-var kittySchema = mongoose.Schema({
-  name: String
+// var Promise = require('bluebird'); 
+// Promise.promisifyAll(mongoose);
+
+mongoose.connect('mongodb://localhost:27017/github');
+
+var repoSchema = new Schema({
+  username: String,
+  repos_url: Array
+
 });
 
-var silence = new Kitten({ name: 'Silence' });
-console.log(silence.name); 
+var Repo = mongoose.model('Repo', repoSchema);
 
+let save = (repoData) => {
+  var repos = new Repo(repoData);
 
-mongoose.connect('mongodb://localhost/test');
+  repos.save()
+    .then((data) => console.log(data))
+    .catch ((err) => console.log(err));
+};
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log('We are Connected');
-});
-// let repoSchema = mongoose.Schema({
-//   // TODO: your schema here!
-// });
+var query = (callback) => {
+  Repo.find().sort().exex(callback);
+}
 
-// let Repo = mongoose.model('Repo', repoSchema);
-
-// let save = (/* TODO */) => {
-//   // TODO: Your code here
-//   // This function should save a repo or repos to
-//   // the MongoDB
-// }
-
-// module.exports.save = save;
+module.exports.save = save;
+module.exports.query = query;
